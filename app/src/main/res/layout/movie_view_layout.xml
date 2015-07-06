@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <com.joooonho.SelectableRoundedImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.33"
+        android:scaleType="centerCrop"
+        app:sriv_left_bottom_corner_radius="3dp"
+        app:sriv_left_top_corner_radius="3dp"
+        app:sriv_right_bottom_corner_radius="0dp"
+        app:sriv_right_top_corner_radius="0dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.68"
+        android:orientation="vertical"
+        android:paddingBottom="6dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/mdl_cardview_image_left_title_color"
+            android:textSize="@dimen/mdl_cardview_title_size"
+            android:singleLine="true"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textColor="@color/mdl_cardview_image_left_description_color"
+                android:textSize="@dimen/mdl_cardview_description_size"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:textColor="@color/red"
+                android:textSize="@dimen/mdl_cardview_description_size"
+                android:visibility="gone"
+                android:textStyle="italic"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/mdl_cardview_separator_color"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp"
+            android:visibility="gone">
+
+            <com.dxjia.doubantop.views.RippleView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="20dp"
+                app:rv_type="rectangle"
+                app:rv_zoom="true">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/mdl_cardview_normal_button_color"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </com.dxjia.doubantop.views.RippleView>
+
+            <com.dxjia.doubantop.views.RippleView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="20dp"
+                app:rv_type="rectangle"
+                app:rv_zoom="true">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/mdl_cardview_highlight_button_color"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </com.dxjia.doubantop.views.RippleView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

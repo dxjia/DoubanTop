@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="details_item_title_size">16sp</dimen>
+
+    <!-- CardView -->
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="image_height">148dp</dimen>
+    <dimen name="mdl_cardview_title_size">20sp</dimen>
+    <dimen name="mdl_cardview_description_size">16sp</dimen>
+    <dimen name="mdl_cardview_button_size">14sp</dimen>
+
+    <dimen name="people_view_avator_width">140dp</dimen>
+    <dimen name="people_view_avator_height">200dp</dimen>
+</resources>

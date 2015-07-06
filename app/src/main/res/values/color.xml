@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1d7ad4</color>
+    <color name="colorPrimaryDark">#2398f3</color>
+    <color name="divider">#644d4d4d</color>
+    <color name="titleTextColor">@android:color/white</color>
+    <color name="red">#990000</color>
+    <color name="green">#009900</color>
+    <color name="blue">#000099</color>
+    <color name="orange">#FF9900</color>
+    <color name="rippelColor">#99ffffff</color>
+	<color name="titleTextColorFocused">@android:color/white</color>
+    <color name="detail_item_title_color">#b7b7b7</color>
+    <!-- CardView -->
+    <color name="mdl_cardview_background">#fafafa</color>
+    <color name="mdl_cardview_image_left_title_color">#212121</color>
+    <color name="mdl_cardview_image_top_title_color">#ffffff</color>
+    <color name="mdl_cardview_normal_description_color">#212121</color>
+    <color name="mdl_cardview_image_left_description_color">#757575</color>
+    <color name="mdl_cardview_image_top_description_color">#212121</color>
+    <color name="mdl_cardview_normal_button_color">#212121</color>
+    <color name="mdl_cardview_highlight_button_color">#ffab40</color>
+    <color name="mdl_cardview_normal_button_ripple_color">#66999999</color>
+    <color name="mdl_cardview_separator_color">#dcdcdc</color>
+
+    <!-- PeopleView -->
+    <color name="people_item_title_color">#757575</color>
+    <color name="people_item_content_color">#000000</color>
+
+    <color name="search_text_color">#6D6D6D</color>
+</resources>

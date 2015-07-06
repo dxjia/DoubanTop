@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:background="@mipmap/default_bg">
+
+    <com.joooonho.SelectableRoundedImageView
+        android:id="@+id/avator"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="18dp"
+        android:src="@mipmap/avator"
+        app:sriv_border_color="@android:color/white"
+        app:sriv_border_width="1dp"
+        app:sriv_oval="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/drawer_header_mask"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="18dp">
+        <TextView
+            android:id="@+id/drawer_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_name"
+            style="@style/DrawerNameText" />
+        <TextView
+            android:id="@+id/drawer_user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_email"
+            style="@style/ViewText" />
+    </LinearLayout>
+
+</RelativeLayout>

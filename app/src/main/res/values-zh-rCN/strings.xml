@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">豆瓣电影榜</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
+    <string name="action_done">完成</string>
+    <string name="not_title_set">标题未设置</string>
+    <string name="content_title">豆瓣电影榜</string>
+    <string name="book_pager_title">图书</string>
+    <string name="movie_pager_title">电影</string>
+    <string name="note_pager_title">笔记</string>
+    <string name="else_pager_title">其他</string>
+    <string name="city_pager_title">同城</string>
+    <string name="music_pager_title">音乐</string>
+    <string name="title_activity_detail">详情</string>
+    <string name="movie_top200_pager_title">TOP200</string>
+    <string name="movie_us_box_pager_title">北美票房榜</string>
+    <string name="search_pager_title">搜索</string>
+    <string name="movie_top_pager_title">排行榜</string>
+    <string name="detail_item_title_casts">主演</string>
+    <string name="detail_item_title_director">导演</string>
+    <string name="detail_item_title_score">评分</string>
+    <string name="detail_item_title_summary">剧情简介</string>
+    <string name="people_item_aka_cn">更多中文名:</string>
+    <string name="people_item_birthday">生日:</string>
+    <string name="people_item_born_place">出生地:</string>
+    <string name="people_item_constellation">星座:</string>
+    <string name="people_item_gender">性别:</string>
+    <string name="people_item_name_en">英文名:</string>
+    <string name="people_item_professions">职业:</string>
+    <string name="action_search">搜索</string>
+    <string name="edit_text_search_hint">片名、演员或导演</string>
+    <string name="imate_back">Back</string>
+    <string name="empty_note_text">请搜索</string>
+    <string name="loading">Loading</string>
+    <string name="unkown">未知</string>
+    <string name="action_star">收藏</string>
+    <string name="favorites">收藏夹</string>
+    <string name="title_activity_about">关于</string>
+</resources>

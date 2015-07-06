@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_navigation_menu_collections"
+            android:icon="@mipmap/ic_favorites"
+            android:title="@string/favorites" />
+        <item
+            android:id="@+id/drawer_navigation_menu_github"
+            android:icon="@mipmap/ic_github"
+            android:title="Github" />
+    </group>
+</menu>

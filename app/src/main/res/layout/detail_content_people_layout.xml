@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/people_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Loading"
+        android:singleLine="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/people_area"
+        android:orientation="horizontal"
+        android:layout_below="@id/people_name">
+        <com.joooonho.SelectableRoundedImageView
+            android:id="@+id/people_avator"
+            android:layout_width="140dp"
+            android:layout_height="200dp"/>
+        <LinearLayout
+            android:id="@+id/people_details_text_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp">
+            <!-- 性别 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gender_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_gender"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 星座 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/constellation_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_constellation"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/constellation_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 出生日期 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/birthday_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_birthday"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/birthday_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 出生地 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/born_place_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_born_place"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/born_place_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 职业 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/professions_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_professions"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/professions_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 英文名 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_en_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_name_en"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/name_en_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+            <!-- 更多中文名 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/aka_cn_area"
+                android:orientation="horizontal"
+                android:layout_marginBottom="3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_item_aka_cn"
+                    android:textColor="@color/people_item_title_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/aka_cn_content"
+                    android:textColor="@color/people_item_content_color"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

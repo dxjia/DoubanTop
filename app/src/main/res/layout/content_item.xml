@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dxjia.doubantop.views.MovieView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:layout_marginLeft="8dp"
+	android:layout_marginRight="8dp"
+	android:layout_marginTop="2dp"
+	android:layout_marginBottom="5dp"
+    app:mdl_description="A Left Image CardView"
+    app:mdl_highlightButton="Details">
+
+</com.dxjia.doubantop.views.MovieView>
