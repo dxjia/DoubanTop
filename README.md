@@ -6,10 +6,20 @@
 2. 电影排行榜<br>
 3. 电影搜索，搜索历史<br>
 4. 电影条目收藏与删除<br>
+5. 语音识别(使用Baidu Voice)<br>
 # 使用
-使用之前请先将douban APIKEY改成自己的，这里写为空了，douban api访问频率有限制，不带api_key，每分钟只能请求10次，而带api_key可以每分钟访问40次。
+使用之前请先将douban APIKEY改成自己的，这里写为空了，douban api访问频率有限制，不带api_key，每分钟只能请求10次，而带api_key可以每分钟访问40次。<br>
+com.dxjia.doubantop.net.DoubanApiHelper<br>
 ```java
-文件
+    // douban api key, change to yourself
+    public final static String API_KEY = "";
+    public final static String SECRET = "";
+```
+百度语音API_KEY<br>
+com.dxjia.doubantop.net.BaiduVoiceUtils<br>
+```java
+    public static final String BAIDU_VOICE_API_KEY = "";
+    public static final String BAIDU_VOICE_SECRET = "";
 ```
 
 # Reference & Thanks
