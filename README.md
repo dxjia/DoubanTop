@@ -13,9 +13,29 @@
 ```
 
 # Reference & Thanks
-[android-design-support-lib-sample](https://github.com/swissonid/android-design-support-lib-sample)    swissonid<br>
-[material-design-library](https://github.com/DenisMondon/material-design-library)    DenisMondon
+[android-design-support-lib-sample](https://github.com/swissonid/android-design-support-lib-sample)--swissonid<br>
+[material-design-library](https://github.com/DenisMondon/material-design-library)--DenisMondon
 # Open Source
+json解析利器<br>
+[gson](http://code.google.com/p/google-gson/)--Google<br><br>
+
+对象-数据库ORM映射<br>
+[androrm](http://www.androrm.com/)--androrm<br>
+
+android懒人库<br>
+[butterknife](https://github.com/JakeWharton/butterknife)--JakeWharton<br>
+
+图片下载缓存<br>
+[picasso](https://github.com/square/picasso)--square<br>
+
+高效http<br>
+[okhttp](https://github.com/square/okhttp)--square<br>
+
+圆角图片<br>
+[selectableroundedimageview](https://github.com/pungrue26/SelectableRoundedImageView)--Joonho Kim<br>
+
+BaiduVoice Android Studio版<br>
+[baiduvoicehelper](https://github.com/dxjia/BaiduVoiceHelper)--dxjia<br>
 
 # License
 ```
