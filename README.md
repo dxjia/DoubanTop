@@ -23,6 +23,7 @@ android懒人库    [butterknife](https://github.com/JakeWharton/butterknife)--J
 高效http    [okhttp](https://github.com/square/okhttp)--square<br>
 圆角图片    [selectableroundedimageview](https://github.com/pungrue26/SelectableRoundedImageView)--Joonho Kim<br>
 BaiduVoice Android Studio版    [baiduvoicehelper](https://github.com/dxjia/BaiduVoiceHelper)--dxjia<br>
+控件水波纹效果    [RippleEffect](https://github.com/traex/RippleEffect)--traex
 # License
 ```
 Copyright (C) 2015 dxjia
