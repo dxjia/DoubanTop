@@ -21,6 +21,11 @@ com.dxjia.doubantop.net.BaiduVoiceUtils<br>
     public static final String BAIDU_VOICE_API_KEY = "";
     public static final String BAIDU_VOICE_SECRET = "";
 ```
+# ScreenShots
+![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/1.gif)
+![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/2.gif)
+![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/3.gif)
+![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/4.gif)
 
 # Reference & Thanks
 [android-design-support-lib-sample](https://github.com/swissonid/android-design-support-lib-sample)--swissonid<br>
