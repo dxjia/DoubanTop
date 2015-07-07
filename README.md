@@ -15,7 +15,7 @@ com.dxjia.doubantop.net.DoubanApiHelper<br>
     public final static String API_KEY = "";
     public final static String SECRET = "";
 ```
-百度语音API_KEY<br>
+百度语音API_KEY也改成自己的<br>
 com.dxjia.doubantop.net.BaiduVoiceUtils<br>
 ```java
     public static final String BAIDU_VOICE_API_KEY = "";
