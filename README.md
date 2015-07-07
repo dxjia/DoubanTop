@@ -23,7 +23,7 @@ com.dxjia.doubantop.net.BaiduVoiceUtils<br>
 ```
 # ScreenShots
 ![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/1.gif)
-![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/2.gif)
+![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/2.gif)<br>
 ![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/3.gif)
 ![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/4.gif)
 
