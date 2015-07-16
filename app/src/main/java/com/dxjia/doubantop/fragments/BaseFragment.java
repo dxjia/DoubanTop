@@ -28,7 +28,7 @@ public abstract class BaseFragment extends Fragment {
         try {
             mMovieInfoActionsListener = (MovieInfoActionsListener) activity;
         } catch (ClassCastException e) {
-            Log.d(this.getClass().getSimpleName(), " make sure that dont need to implent MovieInfoActionsListener!");
+            Log.d(activity.getClass().getSimpleName(), " make sure that dont need to implent MovieInfoActionsListener!");
         }
     }
 
