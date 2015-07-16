@@ -1,0 +1,173 @@
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/details_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <!-- 评分 -->
+            <LinearLayout
+                android:id="@+id/score_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/detail_item_title_score"
+                    style="@style/DetailsItemTitleStyle"/>
+
+                <android.support.v7.widget.CardView
+                    style="@style/DetailsCardViewStyle"
+                    app:cardBackgroundColor="@color/mdl_cardview_background"
+                    app:cardCornerRadius="2dp"
+                    app:cardPreventCornerOverlap="false">
+                    <LinearLayout
+                        android:id="@+id/score_rating_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/rating_bar"
+                            style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:stepSize="0.5" />
+
+                        <TextView
+                            android:id="@+id/score_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="30dp"
+                            android:singleLine="true"
+                            android:textColor="@color/red"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+                    </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <!-- 导演 -->
+            <LinearLayout
+                android:id="@+id/director_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/detail_item_title_director"
+                    style="@style/DetailsItemTitleStyle" />
+
+                <android.support.v7.widget.CardView
+                    style="@style/DetailsCardViewStyle"
+                    app:cardBackgroundColor="@color/mdl_cardview_background"
+                    app:cardCornerRadius="2dp"
+                    app:cardPreventCornerOverlap="false">
+                    <com.dxjia.doubantop.views.PeopleView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/director">
+                    </com.dxjia.doubantop.views.PeopleView>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <!-- 主演 -->
+            <LinearLayout
+                android:id="@+id/casts_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/detail_item_title_casts"
+                    style="@style/DetailsItemTitleStyle" />
+
+                <android.support.v7.widget.CardView
+                    style="@style/DetailsCardViewStyle"
+                    app:cardBackgroundColor="@color/mdl_cardview_background"
+                    app:cardCornerRadius="2dp"
+                    app:cardPreventCornerOverlap="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <com.dxjia.doubantop.views.PeopleView
+                        android:id="@+id/casts_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="gone">
+                    </com.dxjia.doubantop.views.PeopleView>
+
+                    <com.dxjia.doubantop.views.PeopleView
+                        android:id="@+id/casts_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="gone">
+                    </com.dxjia.doubantop.views.PeopleView>
+
+                    <com.dxjia.doubantop.views.PeopleView
+                        android:id="@+id/casts_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="gone">
+                    </com.dxjia.doubantop.views.PeopleView>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <!-- 内容简介 -->
+            <LinearLayout
+                android:id="@+id/summary_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/detail_item_title_summary"
+                    style="@style/DetailsItemTitleStyle" />
+
+                <android.support.v7.widget.CardView
+                    style="@style/DetailsCardViewStyle"
+                    app:cardBackgroundColor="@color/mdl_cardview_background"
+                    app:cardCornerRadius="2dp"
+                    app:cardPreventCornerOverlap="false">
+                    <TextView
+                        android:id="@+id/movie_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:layout_margin="5dp"
+                        android:textSize="16sp"/>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

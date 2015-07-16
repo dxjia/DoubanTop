@@ -1,45 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+    <style name="AppThemePlus" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/AppBaseTheme">
-        <!-- Customize your theme here. -->
-    </style>
-
-    <!-- ToolBar -->
-    <style name="ToolBarStyle" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="actionMenuTextAppearance">@style/ToolBarActionMenuTextStyle</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
-        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
-    </style>
-
-    <style name="Douban.Content.ActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">?colorPrimary</item>
-        <item name="theme">@style/ThemeOverlay.Content.ActionBar</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
-    </style>
-
-    <style name="ThemeOverlay.Content.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/titleTextColor</item>
-    </style>
-
-    <style name="ToolBarActionMenuTextStyle">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@android:color/white</item>
+    <style name="AppTheme" parent="AppThemePlus">
     </style>
 
     <style name="ViewText">
@@ -50,21 +17,43 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/titleTextColor</item>
-    </style>
-
-    <style name="Title.Expanded" parent="Title">
-        <item name="android:textSize">32sp</item>
-    </style>
-
-    <style name="Title.collapsed" parent="Title">
-        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="AppTheme.Tabs" parent="AppTheme">
         <item name="colorAccent">@color/orange</item>
     </style>
 
+    <style name="Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/titleTextColor</item>
+    </style>
+
+    <style name="TitleExpanded" parent="Title">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="TitleCollapsed" parent="Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TitleExpandedPlus" parent="Title">
+        <item name="android:textSize">32.5sp</item>
+    </style>
+
+    <style name="TitleCollapsedPlus" parent="Title">
+        <item name="android:textSize">20.5sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailsCardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">32dp</item>
+    </style>
+
+    <style name="DetailsItemTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textColor">@color/detail_item_title_color</item>
+        <item name="android:textSize">@dimen/details_item_title_size</item>
+    </style>
 </resources>

@@ -1,9 +1,9 @@
 package com.dxjia.doubantop.datas;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.dxjia.doubantop.DoubanTopApplication;
+import com.dxjia.doubantop.datas.beans.MovieMajorInfos;
 import com.orm.androrm.CharField;
 import com.orm.androrm.Filter;
 import com.orm.androrm.IntegerField;
@@ -126,9 +126,15 @@ public class Favorites extends Model {
         movie_score.set(movieScore);
     }
 
-    public void fillData(String movieId, String movieTitle, String movieImageUri,
-                         int castsCount, String[] castsIds, String[] castsImages,
-                         String directorId, String directorImage, String movieScore) {
+    public void fillDatas(MovieMajorInfos movieInfos) {
+        fillDatas(movieInfos.getMovieId(), movieInfos.getMovieTitle(), movieInfos.getMovieImageUri(),
+                movieInfos.getCastsCount(), movieInfos.getCastsIds(), movieInfos.getCastsImages(),
+                movieInfos.getDirectorId(), movieInfos.getDirectorImage(), movieInfos.getMovieScore());
+    }
+
+    public void fillDatas(String movieId, String movieTitle, String movieImageUri,
+                          int castsCount, String[] castsIds, String[] castsImages,
+                          String directorId, String directorImage, String movieScore) {
         setMovieId(movieId);
         setMovieTitle(movieTitle);
         setMovieImageUri(movieImageUri);

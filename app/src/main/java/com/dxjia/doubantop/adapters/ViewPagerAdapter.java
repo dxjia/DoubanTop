@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.dxjia.doubantop.R;
-import com.dxjia.doubantop.fragments.PagerContentFragment;
-import com.dxjia.doubantop.fragments.SearchContentFragment;
-import com.dxjia.doubantop.net.DoubanApiHelper;
+import com.dxjia.doubantop.fragments.MovieListFragment;
+import com.dxjia.doubantop.fragments.SearchPagerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +34,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     private void initFragments() {
-        mFragments.add(PagerContentFragment.newInstance(DoubanApiHelper.API_TYPE_US_BOX));
-        mFragments.add(PagerContentFragment.newInstance(DoubanApiHelper.API_TYPE_TOPS));
-        mFragments.add(SearchContentFragment.newInstance());
+        mFragments.add(MovieListFragment.newInstance(0));
+        mFragments.add(MovieListFragment.newInstance(1));
+        mFragments.add(SearchPagerFragment.newInstance());
     }
 
     @Override

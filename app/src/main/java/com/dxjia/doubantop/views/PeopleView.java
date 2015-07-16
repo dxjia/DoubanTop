@@ -107,9 +107,10 @@ public class PeopleView extends RelativeLayout {
     public PeopleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.detail_content_people_layout, this);
+        View view = inflater.inflate(R.layout.people_view_layout, this);
         ButterKnife.inject(this, view);
-        init(context);
+        init();
+        mDetailsUpdateHandler = new DetailsUpdateHandler(context);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -117,7 +118,7 @@ public class PeopleView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    private void init(Context context) {
+    private void init() {
         // avator
         setDefaultAvator();
         // 性别
@@ -134,8 +135,10 @@ public class PeopleView extends RelativeLayout {
         setNameen("");
         // 更多中文名
         setAkacn("");
+    }
 
-        mDetailsUpdateHandler = new DetailsUpdateHandler(context);
+    public void cleanDetails() {
+        init();
     }
 
     /**

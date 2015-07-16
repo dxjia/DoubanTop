@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1d7ad4</color>
-    <color name="colorPrimaryDark">#2398f3</color>
-    <color name="divider">#644d4d4d</color>
+    <!-- light blue theme -->
+    <color name="primary">#03A9F4</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#FF9800</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
     <color name="titleTextColor">@android:color/white</color>
     <color name="red">#990000</color>
     <color name="green">#009900</color>
     <color name="blue">#000099</color>
     <color name="orange">#FF9900</color>
     <color name="rippelColor">#99ffffff</color>
-	<color name="titleTextColorFocused">@android:color/white</color>
+    <color name="titleTextColorFocused">@android:color/white</color>
     <color name="detail_item_title_color">#b7b7b7</color>
+
     <!-- CardView -->
     <color name="mdl_cardview_background">#fafafa</color>
     <color name="mdl_cardview_image_left_title_color">#212121</color>

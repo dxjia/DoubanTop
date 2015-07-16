@@ -1,25 +1,39 @@
 package com.dxjia.doubantop.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dxjia.doubantop.MainActivity;
-import com.dxjia.doubantop.R;
+import com.dxjia.doubantop.interfaces.MovieInfoActionsListener;
 
 import butterknife.ButterKnife;
 
 /**
- * Created by djia on 15-6-23.
+ * Created by 德祥 on 2015/7/13.
  */
 public abstract class BaseFragment extends Fragment {
-    Toolbar mToolbar;
 
-    public MainActivity getMainActivity(){
-        return ((MainActivity) super.getActivity());
+    /**
+     * this can let our all fragments call the activity`s methods
+     */
+    protected MovieInfoActionsListener mMovieInfoActionsListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mMovieInfoActionsListener = (MovieInfoActionsListener) activity;
+        } catch (ClassCastException e) {
+            Log.d(this.getClass().getSimpleName(), " make sure that dont need to implent MovieInfoActionsListener!");
+        }
+    }
+
+    protected MovieInfoActionsListener getActionsListener() {
+        return mMovieInfoActionsListener;
     }
 
     @Override
@@ -30,45 +44,5 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if(!hasCustomToolbar()) return;
-        mToolbar = ButterKnife.findById(view, getToolbarId());
-        mToolbar.setTitle(getTitle());
-        setToolbarNavigationAction(view);
-    }
-
-    // default action
-    protected void setToolbarNavigationAction(View view) {
-        mToolbar.setNavigationIcon(R.mipmap.ic_menu);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getMainActivity().openDrawer();
-            }
-        });
-    }
-
-    protected int getToolbarId(){
-        return R.id.toolbar;
-    }
-
-    public boolean hasCustomToolbar(){
-        return false;
-    }
-
-    protected String getTitle(){
-        return getResources().getString(R.string.not_title_set);
-    }
-
     protected abstract int getLayout();
-
-    public Toolbar getToolbar() {
-        if (hasCustomToolbar()) {
-            return mToolbar;
-        }
-        return null;
-    }
-
 }

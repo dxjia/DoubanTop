@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.dxjia.doubantop.MainActivity;
 import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.datas.beans.MovieInfoBean;
 import com.dxjia.doubantop.datas.beans.MovieMajorInfos;
+import com.dxjia.doubantop.interfaces.MovieInfoActionsListener;
 import com.dxjia.doubantop.views.MovieView;
 import com.squareup.picasso.Picasso;
 
@@ -20,15 +20,15 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 /**
- * Created by djia on 15-6-23.
+ * Created by dxjia on 15-6-23.
  */
 public class ContentItemAdapter extends RecyclerView.Adapter<ContentItemAdapter.ViewHolder> {
 
-    private MainActivity mActivity;
-    private List<MovieInfoBean> mMoviesList;
+    final private List<MovieInfoBean> mMoviesList;
+    final private MovieInfoActionsListener mActionListener;
 
-    public ContentItemAdapter(MainActivity activity, List<MovieInfoBean> moviesList) {
-        mActivity = activity;
+    public ContentItemAdapter(MovieInfoActionsListener l, List<MovieInfoBean> moviesList) {
+        mActionListener = l;
         mMoviesList = moviesList;
     }
 
@@ -68,7 +68,7 @@ public class ContentItemAdapter extends RecyclerView.Adapter<ContentItemAdapter.
                     movieMajorInfos.fillDatas(mBean.getId(), mBean.getTitle(), mBean.getImageUri(),
                             mBean.getCastsCount(), mBean.getCastsIds(), mBean.getCastsAvatorUris(),
                             mBean.getDirectorId(), mBean.getDirectorImageUri(), mBean.getAverage());
-                    mActivity.showDetail(movieMajorInfos);
+                    mActionListener.showDetails(movieMajorInfos);
                 }
             });
             Context context = mImageView.getContext();

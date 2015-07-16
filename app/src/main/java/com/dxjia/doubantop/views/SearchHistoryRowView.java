@@ -30,7 +30,7 @@ public class SearchHistoryRowView extends LinearLayout {
 
     private void init() {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.search_log_row, this);
+        inflater.inflate(R.layout.search_history_row, this);
     }
 
     public void setLog(SearchHistory log) {

@@ -1,9 +1,12 @@
 package com.dxjia.doubantop.datas.beans;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by 德祥 on 2015/7/6.
  */
-public class MovieMajorInfos {
+public class MovieMajorInfos implements Parcelable {
     private String mMovieId;
     private String mMovieTitle;
     private String mMovieImageUri;
@@ -15,6 +18,18 @@ public class MovieMajorInfos {
     private String mMovieScore;
 
     public MovieMajorInfos() {
+    }
+
+    protected MovieMajorInfos(Parcel in) {
+        mMovieId = in.readString();
+        mMovieTitle = in.readString();
+        mMovieImageUri = in.readString();
+        mCastsCount = in.readInt();
+        mCastsIds = in.createStringArray();
+        mCastsImages = in.createStringArray();
+        mDirectorId = in.readString();
+        mDirectorImage = in.readString();
+        mMovieScore = in.readString();
     }
 
     public String getMovieId() {
@@ -101,5 +116,45 @@ public class MovieMajorInfos {
         setDirectorId(directorId);
         setDirectorImage(directorImage);
         setMovieScore(movieScore);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MovieMajorInfos> CREATOR = new Creator<MovieMajorInfos>() {
+        @Override
+        public MovieMajorInfos createFromParcel(Parcel in) {
+            return new MovieMajorInfos(in);
+        }
+
+        @Override
+        public MovieMajorInfos[] newArray(int size) {
+            return new MovieMajorInfos[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mMovieId);
+        dest.writeString(mMovieTitle);
+        dest.writeString(mMovieImageUri);
+        dest.writeInt(mCastsCount);
+        dest.writeStringArray(mCastsIds);
+        dest.writeStringArray(mCastsImages);
+        dest.writeString(mDirectorId);
+        dest.writeString(mDirectorImage);
+        dest.writeString(mMovieScore);
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MovieMajorInfos {");
+        sb.append("id: " + mMovieId + ", ");
+        sb.append("title: " + mMovieTitle + ", ");
+        sb.append("directorId: " + mDirectorId + ", ");
+        sb.append("castCount: " + mCastsCount + "}");
+        return sb.toString();
     }
 }

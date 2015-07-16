@@ -11,12 +11,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-        <!-- adjustResize will be one good way, but i have some problems with it -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activitys.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +23,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about" >
+            android:name=".activitys.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activitys.FavoritesActivity"
+            android:label="@string/title_activity_favorites_acvitity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activitys.DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/AppThemePlus"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

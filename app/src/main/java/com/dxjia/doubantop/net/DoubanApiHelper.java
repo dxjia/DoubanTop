@@ -10,6 +10,7 @@ import java.net.URLEncoder;
  */
 public class DoubanApiHelper {
     // douban api key, change to yourself
+    // TODO personal infos, hide this when push to github
     public final static String API_KEY = "";
     public final static String SECRET = "";
 

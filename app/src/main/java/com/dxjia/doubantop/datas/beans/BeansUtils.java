@@ -15,6 +15,7 @@ public class BeansUtils {
 
     public static final int IMAGE_URI_SIZE_PREFER = IMAGE_URI_USE_LARGE;
 
+    public static final String MOVIE_MAJOR_INFOS_KEY = "movie_major_infos";
     public static final String ARG_ID = "id";
     public static final String ARG_TITLE = "title";
     public static final String ARG_IMAGE_URI = "image_uri";

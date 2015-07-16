@@ -11,7 +11,7 @@ import com.dxjia.library.BaiduVoiceHelper;
  * Created by 德祥 on 2015/7/3.
  */
 public class BaiduVoiceUtils {
-    // change to youreself
+    // TODO personal infos, hide this when push to github
     public static final String BAIDU_VOICE_API_KEY = "";
     public static final String BAIDU_VOICE_SECRET = "";
 

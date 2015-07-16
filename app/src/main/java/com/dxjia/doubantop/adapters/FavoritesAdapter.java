@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.datas.Favorites;
-import com.dxjia.doubantop.fragments.FavoritesItemClickListener;
+import com.dxjia.doubantop.interfaces.FavoritesItemClickListener;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     private FavoritesItemClickListener mItemClickListener;
 
     @Override
-    public FavoritesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.favorates_item, parent,false);
         view.setOnClickListener(this);
@@ -38,7 +38,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(FavoritesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.updateViews(mDatasList.get(position));
         holder.itemView.setTag(mDatasList.get(position));
     }

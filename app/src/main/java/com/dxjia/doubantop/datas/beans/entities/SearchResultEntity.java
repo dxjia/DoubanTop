@@ -15,7 +15,7 @@ public class SearchResultEntity {
      * title : 搜索 "dog" 的结果
      */
     private int total;
-    private List<SearchResultEntity.SubjectsEntity> subjects;
+    private List<SubjectsEntity> subjects;
     private int count;
     private int start;
     private String title;
@@ -44,7 +44,7 @@ public class SearchResultEntity {
         return total;
     }
 
-    public List<SearchResultEntity.SubjectsEntity> getSubjects() {
+    public List<SubjectsEntity> getSubjects() {
         return subjects;
     }
 
