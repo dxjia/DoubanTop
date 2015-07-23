@@ -7,6 +7,8 @@ Material design UI以及豆瓣API网络访问练习。显示豆瓣电影排行�
 3. 电影搜索，搜索历史，关键字匹配<br>
 4. 电影条目收藏与删除<br>
 5. 语音识别(使用Baidu Voice)<br>
+# APK
+如果你想直接看效果，而不想编译整个工程，可以直接下载[APK](https://github.com/dxjia/DoubanTop/raw/master/DoubanTop.apk)进行安装。
 # 使用
 下载下来的工程可以直接导入android studio编译并使用，因为douban电影api不带apikey其实也是可以访问的，只是每分钟次数限制在10次，而百度voice不带apikey是不能使用的，如果不需要看这个效果可以不用往工程里加key了。<br>
 ##添加api key
