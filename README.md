@@ -8,19 +8,26 @@ Material design UI以及豆瓣API网络访问练习。显示豆瓣电影排行�
 4. 电影条目收藏与删除<br>
 5. 语音识别(使用Baidu Voice)<br>
 # 使用
-使用之前请先将douban APIKEY改成自己的，这里写为空了，douban api访问频率有限制，不带api_key，每分钟只能请求10次，而带api_key可以每分钟访问40次。<br>
-com.dxjia.doubantop.net.DoubanApiHelper<br>
-```java
-    // douban api key, change to yourself
-    public final static String API_KEY = "";
-    public final static String SECRET = "";
+下载下来的工程可以直接导入android studio编译并使用，因为douban电影api不带apikey其实也是可以访问的，只是每分钟次数限制在10次，而百度voice不带apikey是不能使用的，如果不需要看这个效果可以不用往工程里加key了。<br>
+##添加api key
+douban api访问带api_key可以每分钟40次。<br>
+按照以下方法增加douban 和 baidu voice的 api key信息：<br>
+1.在app\src\main\assets目录下新建文件```api_infos.xml```<br>
+内容如下，api_key和secret修改成自己的就可以了。<br>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<api_infos>
+    　　<api source="douban">
+    　　　　<api_key>123456789655545464411</api_key>
+    　　　　<secret>698712151515</secret>
+    　　</api>
+    　　<api source="baiduvoice">
+    　　　　<api_key>avMereoiomfnnmsnfemtg</api_key>
+    　　　　<secret>698712151515</secret>
+    　　</api>
+</api_infos>
 ```
-百度语音API_KEY也改成自己的<br>
-com.dxjia.doubantop.net.BaiduVoiceUtils<br>
-```java
-    public static final String BAIDU_VOICE_API_KEY = "";
-    public static final String BAIDU_VOICE_SECRET = "";
-```
+
 # ScreenShots
 ![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/1.gif)
 ![Img](https://github.com/dxjia/DoubanTop/blob/master/screeshots/2.gif)<br>
