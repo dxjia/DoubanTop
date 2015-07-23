@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<api_infos>
+    　　<api source="douban">
+    　　　　<api_key>03521f0ecf2e543109f65d2c6d8afc93</api_key>
+    　　　　<secret>d9b757406a5e0495</secret>
+    　　</api>
+    　　<api source="baiduvoice">
+    　　　　<api_key>jdvNM9NMNDcoLwgyj0uGjYhf</api_key>
+    　　　　<secret>d5482120d8a6d89330e25fd130c04673</secret>
+    　　</api>
+</api_infos>

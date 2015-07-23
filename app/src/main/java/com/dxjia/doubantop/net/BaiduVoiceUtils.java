@@ -6,14 +6,16 @@ import android.support.v4.app.Fragment;
 
 import com.dxjia.library.BaiduVoiceHelper;
 
+import java.util.List;
+
 
 /**
  * Created by 德祥 on 2015/7/3.
  */
 public class BaiduVoiceUtils {
-    // TODO personal infos, hide this when push to github
-    public static final String BAIDU_VOICE_API_KEY = "";
-    public static final String BAIDU_VOICE_SECRET = "";
+    // baidu voice api key, change to yourself in assets/api_infos.xml
+    public static final String BAIDU_VOICE_API_KEY = getBaiduVoiceApiKey();
+    public static final String BAIDU_VOICE_SECRET = getBaiduVoiceApiSecret();
 
     /**
      *
@@ -38,5 +40,37 @@ public class BaiduVoiceUtils {
         BaiduVoiceHelper.startBaiduVoiceForV4Fragment(fragment, BAIDU_VOICE_API_KEY, BAIDU_VOICE_SECRET, requestId);
     }
 
+
+    private static String getBaiduVoiceApiKey() {
+        String apikey = "";
+        // parsing xml
+        List<ApiInfosUtil.ApiInfo> apiInfos = ApiInfosUtil.parseApiInfos();
+        if (apiInfos != null) {
+            for (ApiInfosUtil.ApiInfo apiInfo : apiInfos) {
+                if (apiInfo.getSource() == ApiInfosUtil.API_SOURCE_BAIDU_VOICE) {
+                    apikey = apiInfo.getApikey();
+                    break;
+                }
+            }
+        }
+
+        return apikey;
+    }
+
+    private static String getBaiduVoiceApiSecret() {
+        String secret = "";
+        // parsing xml
+        List<ApiInfosUtil.ApiInfo> apiInfos = ApiInfosUtil.parseApiInfos();
+        if (apiInfos != null) {
+            for (ApiInfosUtil.ApiInfo apiInfo : apiInfos) {
+                if (apiInfo.getSource() == ApiInfosUtil.API_SOURCE_BAIDU_VOICE) {
+                    secret = apiInfo.getSecret();
+                    break;
+                }
+            }
+        }
+
+        return secret;
+    }
 
 }

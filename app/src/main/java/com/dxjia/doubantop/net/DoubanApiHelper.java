@@ -1,18 +1,28 @@
 package com.dxjia.doubantop.net;
 
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Xml;
 
+import com.dxjia.doubantop.DoubanTopApplication;
+import com.dxjia.doubantop.datas.beans.BeansUtils;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * Created by 德祥 on 2015/6/23.
  */
 public class DoubanApiHelper {
-    // douban api key, change to yourself
-    // TODO personal infos, hide this when push to github
-    public final static String API_KEY = "";
-    public final static String SECRET = "";
+    // douban api key, change to yourself in assets/api_infos.xml
+    public final static String API_KEY = getDoubanApiKey();
+    public final static String SECRET = getDoubanApiSecret();
 
     public final static String DOUBAN_API_BASE_URI = "https://api.douban.com";
     // https://api.douban.com/v2/movie
@@ -89,4 +99,37 @@ public class DoubanApiHelper {
         String uri = MOVIE_API_BASE_URI + "/search?q=" + encodeKey;
         return appendApiKey(uri, false);
     }
+
+    private static String getDoubanApiKey() {
+        String apikey = "";
+        // parsing xml
+        List<ApiInfosUtil.ApiInfo> apiInfos = ApiInfosUtil.parseApiInfos();
+        if (apiInfos != null) {
+            for (ApiInfosUtil.ApiInfo apiInfo : apiInfos) {
+                if (apiInfo.getSource() == ApiInfosUtil.API_SOURCE_DOUBAN) {
+                    apikey = apiInfo.getApikey();
+                    break;
+                }
+            }
+        }
+
+        return apikey;
+    }
+
+    private static String getDoubanApiSecret() {
+        String secret = "";
+        // parsing xml
+        List<ApiInfosUtil.ApiInfo> apiInfos = ApiInfosUtil.parseApiInfos();
+        if (apiInfos != null) {
+            for (ApiInfosUtil.ApiInfo apiInfo : apiInfos) {
+                if (apiInfo.getSource() == ApiInfosUtil.API_SOURCE_DOUBAN) {
+                    secret = apiInfo.getSecret();
+                    break;
+                }
+            }
+        }
+
+        return secret;
+    }
+
 }
