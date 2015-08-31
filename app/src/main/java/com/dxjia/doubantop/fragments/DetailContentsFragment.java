@@ -15,14 +15,10 @@ import com.dxjia.doubantop.datas.beans.BeansUtils;
 import com.dxjia.doubantop.datas.beans.MovieMajorInfos;
 import com.dxjia.doubantop.datas.beans.entities.SurveyEntity;
 import com.dxjia.doubantop.net.DoubanApiHelper;
+import com.dxjia.doubantop.net.HttpCallBack;
 import com.dxjia.doubantop.net.HttpUtils;
 import com.dxjia.doubantop.views.PeopleView;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,7 +159,7 @@ public class DetailContentsFragment extends BaseFragment {
         }
 
         mScoreArea.setVisibility(View.VISIBLE);
-        mScoreRatingBar.setRating((float)((double)(Float.valueOf(scoreStr))/(double)(2)));
+        mScoreRatingBar.setRating((float) ((double) (Float.valueOf(scoreStr)) / (double) (2)));
         mScoreTextView.setText(scoreStr);
     }
 
@@ -230,7 +226,7 @@ public class DetailContentsFragment extends BaseFragment {
     /**
      * 异步请求数据
      */
-    private void doUpdateWork(String uri) {
+    /*private void doUpdateWork(String uri) {
         HttpUtils.enqueue(uri, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -257,6 +253,9 @@ public class DetailContentsFragment extends BaseFragment {
                 }
             }
         });
+    }*/
+    private void doUpdateWork(String uri) {
+        HttpUtils.enqueue(uri, new HttpCallBack<>(mUpdateHandler, SurveyEntity.class));
     }
 
     /**
@@ -271,11 +270,17 @@ public class DetailContentsFragment extends BaseFragment {
                     doUpdateWork(DoubanApiHelper.getMovieSubjectUri(mMovieInfos.getMovieId()));
                     break;
                 case EVENT_UPDATE_FAILED:
+                    mSummary = "";
                     mSwipeRefreshLayout.setRefreshing(false);
                     break;
                 case EVENT_UPDATE_DONE:
-                    mSwipeRefreshLayout.setRefreshing(false);
-                    setupViews();
+                    if (msg.obj != null) {
+                        SurveyEntity survey = (SurveyEntity)(msg.obj);
+                        mSummary = survey.getSummary();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        setupViews();
+                    }
+
                     break;
             }
 
