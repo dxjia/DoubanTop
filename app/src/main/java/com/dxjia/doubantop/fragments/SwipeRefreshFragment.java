@@ -1,7 +1,6 @@
 package com.dxjia.doubantop.fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,9 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.adapters.ContentItemAdapter;
@@ -21,15 +18,11 @@ import com.dxjia.doubantop.datas.beans.MovieUSBox;
 import com.dxjia.doubantop.datas.beans.entities.SearchResultEntity;
 import com.dxjia.doubantop.datas.beans.entities.SubjectEntity;
 import com.dxjia.doubantop.datas.beans.entities.SubjectsEntity;
-import com.dxjia.doubantop.net.DoubanApiHelper;
-import com.dxjia.doubantop.net.HttpUtils;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.dxjia.doubantop.net.DoubanApiUtils;
+import com.dxjia.doubantop.net.RetrofitCallback;
 
-import java.awt.font.TextAttribute;
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,9 +42,11 @@ public class SwipeRefreshFragment extends BaseFragment {
     private static final int EVENT_UPDATE_START = 1;
     private static final int EVENT_UPDATE_FAILED = 2;
     private static final int EVENT_UPDATE_DONE = 3;
+    private static final int EVENT_UPDATE_US_BOX_DONE = 4;
+    private static final int EVENT_UPDATE_MOVIE_TOPS_DONE = 5;
+    private static final int EVENT_UPDATE_SEARCH_DONE = 6;
 
-    private int mApiType = DoubanApiHelper.API_TYPE_UNKOWN;
-    private String mApiUri;
+    private int mApiType = DoubanApiUtils.API_TYPE_UNKOWN;
     private String mSearchKey;
 
     @InjectView(R.id.swipe_refresh_layout)
@@ -78,26 +73,10 @@ public class SwipeRefreshFragment extends BaseFragment {
             mApiType = getArguments().getInt(ARG_API_TYPE);
         }
 
-        switch (mApiType) {
-            case DoubanApiHelper.API_TYPE_US_BOX:
-                mApiUri = DoubanApiHelper.MOVIE_API_US_BOX_URI;
-                break;
-            case DoubanApiHelper.API_TYPE_TOPS:
-                mApiUri = DoubanApiHelper.MOVIE_API_TOPS_URI;
-                break;
-            case DoubanApiHelper.API_TYPE_SEARCH:
-                mSearchKey = "";
-                mApiUri = "";
-                break;
-            default:
-                mApiUri = DoubanApiHelper.MOVIE_API_US_BOX_URI;
-                break;
-        }
-
         mMoviesList.clear();
-        mUpdateHandler = new UpdateHandler(getActivity());
+        mUpdateHandler = new UpdateHandler();
 
-        if (mApiType != DoubanApiHelper.API_TYPE_SEARCH) {
+        if (mApiType != DoubanApiUtils.API_TYPE_SEARCH) {
             startRequestDelay(100);
         }
     }
@@ -125,10 +104,10 @@ public class SwipeRefreshFragment extends BaseFragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                doUpdateWork(mApiUri);
+                doUpdateWork(mApiType);
             }
         });
-        if (DoubanApiHelper.API_TYPE_SEARCH == mApiType) {
+        if (DoubanApiUtils.API_TYPE_SEARCH == mApiType) {
             setRefreshEnable(false);
         }
     }
@@ -165,7 +144,7 @@ public class SwipeRefreshFragment extends BaseFragment {
             return;
         }
 
-        if (mApiType == DoubanApiHelper.API_TYPE_SEARCH) {
+        if (mApiType == DoubanApiUtils.API_TYPE_SEARCH) {
             mSearchKey = key;
             setRefreshEnable(true);
             fetchSearchContents();
@@ -176,27 +155,22 @@ public class SwipeRefreshFragment extends BaseFragment {
      * 进行搜索
      */
     private void fetchSearchContents() {
-        mApiUri = DoubanApiHelper.getSearchUri(mSearchKey);
         mSwipeRefreshLayout.setRefreshing(true);
-        doUpdateWork(mApiUri);
+        doUpdateWork(mApiType);
     }
 
     /**
      * UI update handler
      */
     private class UpdateHandler extends Handler {
-        private final Context mContext;
-
-        public UpdateHandler(Context context) {
-            mContext = context;
-        }
 
         @Override
         public void handleMessage(Message msg) {
+
             switch (msg.what) {
                 case EVENT_UPDATE_INIT:
                     mSwipeRefreshLayout.setRefreshing(true);
-                    doUpdateWork(mApiUri);
+                    doUpdateWork(mApiType);
                     break;
                 case EVENT_UPDATE_START:
                     mMoviesList.clear();
@@ -205,19 +179,25 @@ public class SwipeRefreshFragment extends BaseFragment {
                     break;
                 case EVENT_UPDATE_FAILED:
                     mSwipeRefreshLayout.setRefreshing(false);
-                    if (mApiType == DoubanApiHelper.API_TYPE_SEARCH) {
+                    if (mApiType == DoubanApiUtils.API_TYPE_SEARCH) {
                         setRefreshEnable(false);
                     }
                     break;
+                case EVENT_UPDATE_US_BOX_DONE:
+                case EVENT_UPDATE_MOVIE_TOPS_DONE:
+                case EVENT_UPDATE_SEARCH_DONE:
+                    collectResultsFromResponse(mApiType, msg.obj);
+                    sendEmptyMessage(EVENT_UPDATE_DONE);
+                    break;
                 case EVENT_UPDATE_DONE:
                     // search的结果就不排序了
-                    if(mApiType != DoubanApiHelper.API_TYPE_SEARCH) {
+                    if(mApiType != DoubanApiUtils.API_TYPE_SEARCH) {
                         sortListByScore();
                     }
                     mArrayAdapter = new ContentItemAdapter(getActionsListener(), mMoviesList);
                     mRecyclerView.setAdapter(mArrayAdapter);
                     mSwipeRefreshLayout.setRefreshing(false);
-                    if (mApiType == DoubanApiHelper.API_TYPE_SEARCH) {
+                    if (mApiType == DoubanApiUtils.API_TYPE_SEARCH) {
                         setRefreshEnable(false);
                     }
                     break;
@@ -230,94 +210,117 @@ public class SwipeRefreshFragment extends BaseFragment {
     /**
      * 异步请求数据
      */
-    private void doUpdateWork(String uri) {
-        if(TextUtils.isEmpty(uri)) {
+    private void doUpdateWork(int apiType) {
+        if(apiType < 0) {
             return;
         }
         mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_START);
-        HttpUtils.enqueue(uri, new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                // TODO 失败处理
-                mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_FAILED);
-            }
+        int successCode;
+        int failCode = EVENT_UPDATE_FAILED;
+        switch (apiType) {
+            case DoubanApiUtils.API_TYPE_US_BOX:
+                successCode = EVENT_UPDATE_US_BOX_DONE;
+                DoubanApiUtils.getMovieApiService().getMoviceUSBox(DoubanApiUtils.API_KEY,
+                        new RetrofitCallback<>(mUpdateHandler, successCode, failCode, MovieUSBox.class));
+                break;
+            case DoubanApiUtils.API_TYPE_TOPS:
+                successCode = EVENT_UPDATE_MOVIE_TOPS_DONE;
+                DoubanApiUtils.getMovieApiService().getTop250(DoubanApiUtils.API_KEY,
+                        new RetrofitCallback<>(mUpdateHandler, successCode, failCode, MovieTops.class));
+                break;
+            case DoubanApiUtils.API_TYPE_SEARCH:
+                successCode = EVENT_UPDATE_SEARCH_DONE;
+                if (TextUtils.isEmpty(mSearchKey)) {
+                    break;
+                }
+                String encodeKey;
+                try {
+                    encodeKey = URLEncoder.encode(mSearchKey, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    encodeKey = "";
+                }
+                if (TextUtils.isEmpty(encodeKey)) {
+                    break;
+                }
+                DoubanApiUtils.getMovieApiService().doSearch(encodeKey, DoubanApiUtils.API_KEY,
+                        new RetrofitCallback<>(mUpdateHandler, successCode, failCode, SearchResultEntity.class));
+                break;
+            default:
+                successCode = EVENT_UPDATE_US_BOX_DONE;
+                DoubanApiUtils.getMovieApiService().getMoviceUSBox(DoubanApiUtils.API_KEY,
+                        new RetrofitCallback<>(mUpdateHandler, successCode, failCode, MovieUSBox.class));
+                break;
+        }
+    }
 
-            @Override
-            public void onResponse(Response response) throws IOException {
-                if (response != null) {
-                    if (response.isSuccessful()) {
-                        // 使用Gson解析返回的json数据
-                        Gson gson = new Gson();
+    public void collectResultsFromResponse(int apiType, Object object) {
+        if (object == null) {
+            return;
+        }
 
-                        List<SubjectsEntity> subjects;
-                        SubjectsEntity subjectsEntity;
-                        SubjectEntity subject;
+        List<SubjectsEntity> subjects;
+        SubjectsEntity subjectsEntity;
+        SubjectEntity subject;
 
-                        int i;
-                        if (mApiType == DoubanApiHelper.API_TYPE_US_BOX) {
-                            MovieUSBox usBox = gson.fromJson(response.body().charStream(), MovieUSBox.class);
-                            subjects = usBox.getSubjects();
-                            if (subjects != null) {
-                                for (i = 0; i < subjects.size(); i++) {
-                                    subjectsEntity = subjects.get(i);
-                                    if (subjectsEntity == null) {
-                                        continue;
-                                    }
-                                    subject = subjectsEntity.getSubject();
-                                    if (subject == null) {
-                                        continue;
-                                    }
+        int i;
 
-                                    mMoviesList.add(new MovieInfoBean(subject));
-                                }
-                            }
-                        } else if (mApiType == DoubanApiHelper.API_TYPE_TOPS) {
-                            MovieTops movieTops = gson.fromJson(response.body().charStream(), MovieTops.class);
-                            List<SubjectEntity> subjectEntities;
-                            subjectEntities = movieTops.getSubjects();
-                            if (subjectEntities != null) {
-                                for (i = 0; i < subjectEntities.size(); i++) {
-                                    subject = subjectEntities.get(i);
-                                    if (subject == null) {
-                                        continue;
-                                    }
-                                    mMoviesList.add(new MovieInfoBean(subject));
-                                }
-                            }
-                        } else {
-                            if (mApiType == DoubanApiHelper.API_TYPE_SEARCH) {
-                                List<SearchResultEntity.SubjectsEntity> searResSubjectsList;
-                                SearchResultEntity searchResult = gson.fromJson(response.body().charStream(), SearchResultEntity.class);
-                                searResSubjectsList = searchResult.getSubjects();
-                                if (searResSubjectsList != null) {
-                                    for (i = 0; i < searResSubjectsList.size(); i++) {
-                                        SearchResultEntity.SubjectsEntity subsEntity = searResSubjectsList.get(i);
-                                        if (subsEntity == null) {
-                                            continue;
-                                        }
-                                        subject = SubjectEntity.cloneFromSearchSubjectsEntity(subsEntity);
-                                        if (subject == null) {
-                                            continue;
-                                        }
-
-                                        mMoviesList.add(new MovieInfoBean(subject));
-                                    }
-                                }
-                            }
+        switch (apiType) {
+            case DoubanApiUtils.API_TYPE_US_BOX:
+                MovieUSBox usBox = (MovieUSBox)object;
+                subjects = usBox.getSubjects();
+                if (subjects != null) {
+                    for (i = 0; i < subjects.size(); i++) {
+                        subjectsEntity = subjects.get(i);
+                        if (subjectsEntity == null) {
+                            continue;
+                        }
+                        subject = subjectsEntity.getSubject();
+                        if (subject == null) {
+                            continue;
                         }
 
-                        // 处理结束，更新UI
-                        mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_DONE);
-                    } else {
-                        mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_FAILED);
-                        throw new IOException("Unexpected code " + response);
+                        mMoviesList.add(new MovieInfoBean(subject));
                     }
-                } else {
-                    mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_FAILED);
-                    throw new IOException("got null response!");
                 }
-            }
-        });
+                break;
+            case DoubanApiUtils.API_TYPE_TOPS:
+                MovieTops movieTops = (MovieTops)object;
+                List<SubjectEntity> subjectEntities;
+                subjectEntities = movieTops.getSubjects();
+                if (subjectEntities != null) {
+                    for (i = 0; i < subjectEntities.size(); i++) {
+                        subject = subjectEntities.get(i);
+                        if (subject == null) {
+                            continue;
+                        }
+                        mMoviesList.add(new MovieInfoBean(subject));
+                    }
+                }
+                break;
+            case DoubanApiUtils.API_TYPE_SEARCH:
+                List<SearchResultEntity.SubjectsEntity> searResSubjectsList;
+                SearchResultEntity searchResult = (SearchResultEntity)object;
+                searResSubjectsList = searchResult.getSubjects();
+                if (searResSubjectsList != null) {
+                    for (i = 0; i < searResSubjectsList.size(); i++) {
+                        SearchResultEntity.SubjectsEntity subsEntity = searResSubjectsList.get(i);
+                        if (subsEntity == null) {
+                            continue;
+                        }
+                        subject = SubjectEntity.cloneFromSearchSubjectsEntity(subsEntity);
+                        if (subject == null) {
+                            continue;
+                        }
+
+                        mMoviesList.add(new MovieInfoBean(subject));
+                    }
+                }
+                break;
+            default:
+
+                break;
+        }
     }
 
 }

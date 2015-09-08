@@ -8,7 +8,7 @@ import com.dxjia.doubantop.datas.beans.entities.DirectorsEntity;
 import com.dxjia.doubantop.datas.beans.entities.ImagesEntity;
 import com.dxjia.doubantop.datas.beans.entities.RatingEntity;
 import com.dxjia.doubantop.datas.beans.entities.SubjectEntity;
-import com.dxjia.doubantop.net.DoubanApiHelper;
+import com.dxjia.doubantop.net.DoubanApiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +51,13 @@ public class MovieInfoBean {
 
         switch (BeansUtils.getImageSizePrefer()) {
             case BeansUtils.IMAGE_URI_USE_SMALL:
-                return DoubanApiHelper.appendApiKey(images.getSmall(), true);
+                return DoubanApiUtils.appendApiKey(images.getSmall(), true);
             case BeansUtils.IMAGE_URI_USE_MEDIUM:
-                return DoubanApiHelper.appendApiKey(images.getMedium(), true);
+                return DoubanApiUtils.appendApiKey(images.getMedium(), true);
             case BeansUtils.IMAGE_URI_USE_LARGE:
-                return DoubanApiHelper.appendApiKey(images.getLarge(), true);
+                return DoubanApiUtils.appendApiKey(images.getLarge(), true);
             default:
-                return DoubanApiHelper.appendApiKey(images.getLarge(), true);
+                return DoubanApiUtils.appendApiKey(images.getLarge(), true);
         }
     }
 
@@ -170,16 +170,16 @@ public class MovieInfoBean {
 
             switch (BeansUtils.getImageSizePrefer()) {
                 case BeansUtils.IMAGE_URI_USE_SMALL:
-                    urisList.add(DoubanApiHelper.appendApiKey(avatars.getSmall(), true));
+                    urisList.add(DoubanApiUtils.appendApiKey(avatars.getSmall(), true));
                     break;
                 case BeansUtils.IMAGE_URI_USE_MEDIUM:
-                    urisList.add(DoubanApiHelper.appendApiKey(avatars.getMedium(), true));
+                    urisList.add(DoubanApiUtils.appendApiKey(avatars.getMedium(), true));
                     break;
                 case BeansUtils.IMAGE_URI_USE_LARGE:
-                    urisList.add(DoubanApiHelper.appendApiKey(avatars.getLarge(), true));
+                    urisList.add(DoubanApiUtils.appendApiKey(avatars.getLarge(), true));
                     break;
                 default:
-                    urisList.add(DoubanApiHelper.appendApiKey(avatars.getLarge(), true));
+                    urisList.add(DoubanApiUtils.appendApiKey(avatars.getLarge(), true));
             }
             count++;
         }
@@ -232,13 +232,13 @@ public class MovieInfoBean {
 
         switch (BeansUtils.getImageSizePrefer()) {
             case BeansUtils.IMAGE_URI_USE_SMALL:
-                return DoubanApiHelper.appendApiKey(avatars.getSmall(), true);
+                return DoubanApiUtils.appendApiKey(avatars.getSmall(), true);
             case BeansUtils.IMAGE_URI_USE_MEDIUM:
-                return DoubanApiHelper.appendApiKey(avatars.getMedium(), true);
+                return DoubanApiUtils.appendApiKey(avatars.getMedium(), true);
             case BeansUtils.IMAGE_URI_USE_LARGE:
-                return DoubanApiHelper.appendApiKey(avatars.getLarge(), true);
+                return DoubanApiUtils.appendApiKey(avatars.getLarge(), true);
             default:
-                return DoubanApiHelper.appendApiKey(avatars.getLarge(), true);
+                return DoubanApiUtils.appendApiKey(avatars.getLarge(), true);
         }
     }
 }

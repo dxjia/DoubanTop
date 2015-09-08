@@ -3,7 +3,6 @@ package com.dxjia.doubantop.net;
 import android.util.Xml;
 
 import com.dxjia.doubantop.DoubanTopApplication;
-import com.dxjia.doubantop.datas.beans.BeansUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

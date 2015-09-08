@@ -14,9 +14,8 @@ import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.datas.beans.BeansUtils;
 import com.dxjia.doubantop.datas.beans.MovieMajorInfos;
 import com.dxjia.doubantop.datas.beans.entities.SurveyEntity;
-import com.dxjia.doubantop.net.DoubanApiHelper;
-import com.dxjia.doubantop.net.HttpCallBack;
-import com.dxjia.doubantop.net.HttpUtils;
+import com.dxjia.doubantop.net.DoubanApiUtils;
+import com.dxjia.doubantop.net.RetrofitCallback;
 import com.dxjia.doubantop.views.PeopleView;
 
 import java.util.ArrayList;
@@ -224,41 +223,6 @@ public class DetailContentsFragment extends BaseFragment {
     }
 
     /**
-     * 异步请求数据
-     */
-    /*private void doUpdateWork(String uri) {
-        HttpUtils.enqueue(uri, new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                mSummary = "";
-                mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_FAILED);
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                if (response != null) {
-                    if (response.isSuccessful()) {
-                        // 使用Gson解析返回的json数据
-                        Gson gson = new Gson();
-                        SurveyEntity survey = gson.fromJson(response.body().charStream(), SurveyEntity.class);
-                        mSummary = survey.getSummary();
-
-                        // 处理结束，更新UI
-                        mUpdateHandler.sendEmptyMessage(EVENT_UPDATE_DONE);
-                    } else {
-                        throw new IOException("Unexpected code " + response);
-                    }
-                } else {
-                    throw new IOException("got null response!");
-                }
-            }
-        });
-    }*/
-    private void doUpdateWork(String uri) {
-        HttpUtils.enqueue(uri, new HttpCallBack<>(mUpdateHandler, SurveyEntity.class));
-    }
-
-    /**
      * UI update handler
      */
     private class UpdateHandler extends Handler {
@@ -267,7 +231,10 @@ public class DetailContentsFragment extends BaseFragment {
             switch (msg.what) {
                 case EVENT_UPDATE_START:
                     mSwipeRefreshLayout.setRefreshing(true);
-                    doUpdateWork(DoubanApiHelper.getMovieSubjectUri(mMovieInfos.getMovieId()));
+                    int movieId = Integer.valueOf(mMovieInfos.getMovieId());
+                    // 异步请求数据
+                    DoubanApiUtils.getMovieApiService().getMovieSubject(movieId, DoubanApiUtils.API_KEY,
+                            new RetrofitCallback<>(mUpdateHandler, EVENT_UPDATE_DONE, EVENT_UPDATE_FAILED, SurveyEntity.class));
                     break;
                 case EVENT_UPDATE_FAILED:
                     mSummary = "";

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.interfaces.SearchStateToggleListener;
-import com.dxjia.doubantop.net.DoubanApiHelper;
+import com.dxjia.doubantop.net.DoubanApiUtils;
 
 import butterknife.InjectView;
 
@@ -46,7 +46,7 @@ public class SearchPagerFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSearchResultFragment = MovieListFragment.newInstance(DoubanApiHelper.API_TYPE_SEARCH);
+        mSearchResultFragment = MovieListFragment.newInstance(DoubanApiUtils.API_TYPE_SEARCH);
     }
 
     @Override

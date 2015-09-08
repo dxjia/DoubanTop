@@ -30,4 +30,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.joooonho:selectableroundedimageview:1.0.1'
     compile 'com.dxjia.baiduvoicehelper:library:0.2.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
 }

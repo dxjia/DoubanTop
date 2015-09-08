@@ -18,15 +18,9 @@ import android.widget.TextView;
 
 import com.dxjia.doubantop.R;
 import com.dxjia.doubantop.datas.beans.entities.CelebrityEntity;
-import com.dxjia.doubantop.net.DoubanApiHelper;
-import com.dxjia.doubantop.net.HttpUtils;
-import com.google.gson.Gson;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.dxjia.doubantop.net.DoubanApiUtils;
+import com.dxjia.doubantop.net.RetrofitCallback;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -306,36 +300,14 @@ public class PeopleView extends RelativeLayout {
      * @param id
      */
     private void updateDetails(String id) {
-        String uri = DoubanApiHelper.getCelebrityUri(id);
-        if (TextUtils.isEmpty(uri)) {
-            Log.e("PeoPleView", "invalide uri when update details, and the input id = " + id);
+        if (TextUtils.isEmpty(id)) {
+            Log.e("PeoPleView", "null id when update details");
             mPeopleNameTitleView.setText("Unkown");
             return;
         }
-        HttpUtils.enqueue(uri, new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                // TODO 失败处理
-                mDetailsUpdateHandler.sendEmptyMessage(EVENT_UPDATE_FAILED);
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                if (response != null) {
-                    if (response.isSuccessful()) {
-                        // 使用Gson解析返回的json数据
-                        Gson gson = new Gson();
-                        mCelebrityEntity = gson.fromJson(response.body().charStream(), CelebrityEntity.class);
-                        // 处理结束，更新UI
-                        mDetailsUpdateHandler.sendEmptyMessage(EVENT_UPDATE_DONE);
-                    } else {
-                        throw new IOException("Unexpected code " + response);
-                    }
-                } else {
-                    throw new IOException("got null response!");
-                }
-            }
-        });
+        int celebrityId = Integer.valueOf(id);
+        DoubanApiUtils.getMovieApiService().getCelebrityDetails(celebrityId, DoubanApiUtils.API_KEY,
+                new RetrofitCallback<>(mDetailsUpdateHandler, EVENT_UPDATE_DONE, EVENT_UPDATE_FAILED, CelebrityEntity.class));
 
     }
 
@@ -359,6 +331,10 @@ public class PeopleView extends RelativeLayout {
 
                     break;
                 case EVENT_UPDATE_DONE:
+                    if (msg.obj == null) {
+                        break;
+                    }
+                    mCelebrityEntity = (CelebrityEntity) msg.obj;
                     setPeopleNameTitle(mCelebrityEntity.getName());
                     setGender(mCelebrityEntity.getGender());
                     setBornPlace(mCelebrityEntity.getBorn_place());
