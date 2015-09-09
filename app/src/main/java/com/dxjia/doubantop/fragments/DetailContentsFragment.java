@@ -173,8 +173,12 @@ public class DetailContentsFragment extends BaseFragment {
     }
 
     private void updateCasts(int castsCount, String[] castsIds, String[] castsImages) {
+		if (castsCount == 0 || castsIds == null) {
+			mCastsArea.setVisibility(View.GONE);
+			return;
+		}
         int castIdsLen = castsIds.length;
-        int castImagesLen = castsImages.length;
+        int castImagesLen = castsImages != null ? castsImages.length : 0;
         int temp, count;
         temp = (castsCount > castIdsLen) ? castIdsLen : castsCount;
         count = (temp > castImagesLen) ? castImagesLen : temp;
